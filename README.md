@@ -3,15 +3,15 @@ automated testing, with fresh virtual machines for each session.
 
 ## Features
 
-### Real time dashboard
+#### Real time dashboard
 
 View real time statuses of active sessions. Information such as current status, test result, VM host, rdp port, etc are all available on a real time dashboard.
 
-### HTML5 compatible screencasts 
+#### HTML5 compatible screencasts 
 
 Review test runs in browser using HTML5 (webm) compatibile screencasts, built into the real time dashboard.
 
-### Logstash support, built in
+#### Logstash support, built in
 
 Just about every event that takes place, can be sent to logstash automatically. You just need to enable it, in the configs.
 
