@@ -34,13 +34,15 @@ Just about every event that takes place, can be sent to logstash automatically. 
 
 * If you've found a bug or have a feature request [open an issue](https://github.com/weebly/TASTE/issues/new)
 
+
+## License
+
+TASTE is available under the MIT license. See the LICENSE file for more info.
+
+
 ## Contributing
 
 We would love to have your help to make TASTE better. Feel free to
 
  - Open an issue if you run into any problems.
  - Fork the project and submit pull request. Before the pull requests can be accepted, a Contributors Licensing Agreement must be signed.
-
-## License
-
-TASTE is available under the MIT license. See the LICENSE file for more info.
