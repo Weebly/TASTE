@@ -1,7 +1,5 @@
 Pronounced "TASTY", TASTE (The Automated Selenium Testing Environment), is a framework built using Selenium Grid and VirtualBox, that enables fully
-automated testing, with fresh virtual machines for each session (similar current commercial services available today). With TASTE,
-you can have the same quality service, hosted internally on your own hardware. The only limits of scaling, are the number of servers
-you can allocate to be used with the TASTE system.
+automated testing, with fresh virtual machines for each session.
 
 ## Features
 
