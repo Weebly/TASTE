@@ -14,7 +14,6 @@ Review test runs in browser using HTML5 (webm) compatible screencasts, built int
 #### Logstash support, built in
 
 Just about every event that takes place, can be sent to logstash automatically. You just need to enable it, in the configs.
-co
 
 ## Getting Started
 
