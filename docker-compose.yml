@@ -1,0 +1,52 @@
+rabbitmq:
+  image: rabbitmq:3.5.0-management
+  restart: always
+  ports:
+    - "5672:5672"
+
+etcd:
+  image: quay.io/coreos/etcd:v0.4.6
+  restart: always
+  ports:
+    - "4001:4001"
+
+mongodb:
+  image: mongo:3
+  restart: always
+  ports:
+    - "28017:28017"
+    - "27017:27017"
+
+hub:
+  image: taste/hub 
+  restart: always
+  user: nobody
+  ports:
+    - "4444:4444"
+  environment:
+    ETCD_HOST: "http://192.168.59.103:4001"
+    METEOR_HOST: "http://192.168.59.103:3000"
+    REDIS_HOST: "192.168.59.103"
+
+flower:
+  image: taste/flower
+  restart: always
+  user: nobody
+  ports:
+    - "5555:5555"
+  environment:
+    CELERY_BROKER_URL: "amqp://guest:guest@192.168.59.103:5672//"
+
+dashboard:
+  image: taste/dashboard
+  restart: always
+  user: nobody
+  ports:
+    - "3000:3000"
+  environment:
+    MONGO_URL: "mongodb://192.168.59.103/taste"
+    ROOT_URL: "http://192.168.59.103"
+    PORT: "3000"
+    VIDEO_FILE_HOST: "http://192.168.59.103"
+    CELERY_BROKER_URL: "amqp://guest:guest@192.168.59.103:5672//"
+    ETCD_HOST: "http://192.168.59.103:4001"

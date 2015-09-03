@@ -1,0 +1,151 @@
+<template name="test_view">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-{{test_result}}">
+            <div class="panel-heading"></div>
+            <div class="panel-body">
+              <h2>{{session}}</h2>
+              <h4>{{result}}</h4>
+              <ul class="list-unstyled">
+              <li>{{environment}}</li>
+              <li>{{branch}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          {{>test_screencast}}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>
+</template>
+
+<template name="test_screencast">
+{{#if has_video}}
+<video src="{{videoFileHost}}/{{currentTestId}}.webm" controls>
+</video>
+{{else}}
+<p>Screencast not available at this time.</p>
+{{/if}}
+</template>
+
+<template name="filter">
+  <li class="filter_by pull-left">
+    <div class="btn-group">
+      <button disabled class="btn btn-warning">
+        <strong>{{value.filter_by}}:</strong> {{value.filter_value}}
+      </button>
+      <button data-index="{{index}}" class="btn btn-warning dropdown-toggle"><i class="fa fa-times"></i></button>
+    </div>
+  </li>
+</template>
+
+<template name="filter_by">
+  <div class="row">
+    <div class="col-md-12">
+        <ul style="{{#if hideFilter}}display:none;{{/if}}" class="list-unstyled">
+            {{#each addIndex current_filters}}
+              {{>filter}}
+            {{/each}}
+            <li class="filter_by alert alert-warning pull-left">
+              <form class="form-inline" id="filter_by_form">
+                <div class="form-group">
+                  <select class="form-control" name="filter_by">
+                    <option>Filter by</option>
+                    <option value="branch">Branch</option>
+                    <option value="session">Session</option>
+                    <option value="environment">Environment</option>
+                    <option value="build_tag">Build Tag</option>
+                    <option value="result">Result</option>
+                    <option value="node_status">Node Status</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <input placeholder="Filter value" type="text" name="filter_value" class="form-control">
+                </div>
+                <button class="btn btn-success"><i class='fa fa-plus'></i></button>
+              </form>
+            </li>
+        </ul>
+    </div>
+  </div>
+</template>
+
+<template name="testindex">
+<div class="container-fluid">
+  {{#if activeFilter}}
+  <div class="alert alert-warning">
+    <strong>Your results are being filtered!</strong>
+    Current search query: {{query}}. <a href="#" class="clear_filter_link pull-right">Clear filter</a>
+  </div>
+  {{/if}}
+  {{>filter_by}}
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th class="col-md-4">Session</th>
+            <th class="col-md-1">Environment</th>
+            <th class="col-md-3">Build Tag</th>
+            <th>Result</th>
+            <th class="col-md-2">Start</th>
+            <th class="col-md-1">Run Time</th>
+            <th class="col-md-2">Node Status</th>
+          </tr>
+        </thead>
+        <tbody>
+         {{#each tests}}
+           {{> test}}
+         {{/each}}
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+</div>
+</template>
+
+<template name="test">
+<tr>
+  <td>
+    {{#if break_point}}
+      <button class="terminate-session-btn btn btn-danger btn-xs" title="Terminate session">
+        <i class="fa fa-stop"></i>
+      </button>
+    {{/if}}
+    {{#if has_video}}
+    <a class="btn btn-default btn-xs" href="/tests/{{_id}}"><span class="glyphicon glyphicon-facetime-video"></span></a>
+    {{else}}
+    <!-- Not implemented yet -->
+    <!--<input class="stop-checkbox" type="checkbox"/>-->
+      {{#if rdp_port}}
+        <a class="btn btn-default btn-xs" href="rdp://{{host}}:{{rdp_port}}"><i class="fa fa-desktop"></i></a>
+      {{/if}}
+    {{/if}} 
+    <a href="/tests/{{_id}}">{{session}}</a>
+  </td>
+  <td>{{{environment}}}</td>
+  <td>
+    <a target='_tab' href='{{build_url}}'>{{build_tag}}</a>
+    {{#if build_tag}}<button class="pull-right filter-build-tag-btn btn btn-default btn-xs" title="Filter results by '{{build_tag}}'"><i class="fa fa-search"></i></button>{{/if}}
+  </td>
+  <td class="{{result}}"></td>
+  <td>{{createdAt}}</td>
+  <td>{{run_time}}</td>
+  <td>
+    {{node_status}}
+    {{#if node_status}}<button class="pull-right filter-node-status-btn btn btn-default btn-xs" title="Filter results by '{{node_status}}'"><i class="fa fa-search"></i></button>{{/if}}
+  </td>
+</tr>
+</template>

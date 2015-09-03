@@ -1,0 +1,24 @@
+/* CSS declarations go here */
+body {
+  padding-top: 60px;
+}
+
+video {
+  width: 100%;
+}
+
+.tab-content {
+  margin-top: 10px;
+}
+
+#navbar .fa-search {
+  margin-left: -25px;
+}
+
+#search-field {
+  padding-right: 25px;
+}
+
+.filter_by {
+    margin-right: 10px;
+}

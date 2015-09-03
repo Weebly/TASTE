@@ -1,0 +1,7 @@
+```
+make build
+```
+
+```
+make push
+```

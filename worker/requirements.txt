@@ -1,0 +1,15 @@
+amqp==1.4.6
+anyjson==0.3.3
+billiard==3.3.0.19
+bottle==0.12.8
+celery==3.1.17
+kombu==3.0.24
+pytz==2014.10
+requests==2.5.1
+wsgiref==0.1.2
+selenium
+nose
+netaddr==0.7.13
+librabbitmq
+python-dateutil==2.2
+redis==2.10.3
