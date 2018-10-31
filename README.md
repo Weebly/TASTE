@@ -1,3 +1,5 @@
+<b>This project is deprecated and isn't developed or used anymore internally at Weebly.  If you're looking for similar functionality, we recommend Zalenium - https://github.com/zalando/zalenium </b>
+
 Pronounced "TASTY", TASTE (The Automated Selenium Testing Environment), is a framework built using Selenium Grid and VirtualBox, that enables fully
 automated testing, with fresh virtual machines for each session.
 
